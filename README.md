@@ -1,176 +1,96 @@
-[简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md)
+# 在线多人德州扑克平台源码
 
-# 德州扑克游戏平台 |德州源码| H5 与 Web 在线德州扑克平台
+**C++ / Tars 房间服务，覆盖私人房、快速场、AOF、短牌、SNG、MTT/淘汰赛、保险、牌谱与俱乐部基金流程。**
 
-> **线上稳定运营多年 | 俱乐部+联盟+私人局 | 10+种玩法 | 刚停服，全套源码可出**
-💡 快速搭建属于你的德州扑克平台  
-💡 快速建立自己的德州撲克系統  
+[简体中文](README.md) · [繁體中文](README.zh-TW.md) · [English](README.en.md) · [产品网站](https://masterai-top.github.io/Online-Texas-Holdem-Poker-Platform/)
 
+![在线德州扑克牌桌与操作界面](docs/assets/images/poker-table-action.jpg)
 
-🔥 Online Multiplayer System  
-🔥 Club + Agent System  
-🔥 Real-Time Gameplay  
+## 项目定位
 
+该仓库展示在线多人德州扑克房间与牌桌服务的核心代码结构。它不是只有静态界面的演示项目：仓库中的 `Room.cpp`、`Player.h`、`RoomServant.tars`、消息处理代码和游戏模块，体现了从匹配、入桌、下注、旁观、掉线到结算记录的服务端流程。
 
-👉 🚀 Demo Available  
-👉 📩 Contact for Full Version  
-🔥 Multiplayer Poker System | 多人德州扑克系统  
-👉 Game Server + Lobby + Club + Tournament  
+适合用于评估或二次开发在线德州扑克服务、私人局、俱乐部房间、SNG 与 MTT 赛事房间。完整上线仍需按实际环境接入配置、数据库、网关、支付、风控和客户端。
 
+## 已验证的玩法与房间类型
 
----
+| 模式 | 代码中体现的能力 |
+|---|---|
+| 私人房 / 好友局 | 私人房间类型、房主控制、买入与结算数据 |
+| 快速开始 | Quick Start 专用牌桌管理流程 |
+| AOF | All-in or Fold 独立模式处理 |
+| 短牌 | Short Deck 专用牌桌类型 |
+| SNG | 报名、排名、淘汰与比赛状态 |
+| MTT / 淘汰赛 | 锦标赛房间、晋级排名与奖池相关接口 |
+| 保险 / 多次发牌 | 保险请求与牌桌展示；Run It Twice 相关消息处理 |
 
+## 产品功能
 
-## 🧠 Project Overview
+- **玩家与桌台状态**：大厅、房间、坐下、游戏、离线、旁观和匹配状态。
+- **牌桌操作**：坐下/站起、下注、买入、延时、自动操作和公共牌展示。
+- **牌局记录**：牌局回放、收藏、行动轨迹与结果记录。
+- **俱乐部能力**：俱乐部房间信息、成员管理界面、基金发放与流水。
+- **房主管理**：买入倍数、行动时间、暂停及解散等控制入口。
+- **订单接口**：iOS 与 Google Play 订单生成、校验及消耗校验接口。
+- **模块化游戏**：通过动态 `.so` 模块加载不同房间与玩法实现。
 
+## 产品截图
 
-This is a multiplayer Texas Hold’em poker game platform.  
-本项目是一套多人德州扑克游戏平台系统。
+### 实时牌桌与多玩家操作
 
+![九人桌下注、保险、GPS/IP及语音入口](docs/assets/images/poker-table-overview.jpg)
 
-[![Contact](https://img.shields.io/badge/联系-TG%3A%40xuzongbin001-blue)](https://t.me/xuzongbin001)
-[![Platform](https://img.shields.io/badge/客户端-Unity%20iOS%2FAndroid-green)]()
-[![Backend](https://img.shields.io/badge/服务端-C%2B%2B-red)]()
+### 俱乐部与资金管理
 
+| 俱乐部管理 | 俱乐部基金流水 |
+|---|---|
+| ![俱乐部成员、管理员、联盟与统计](docs/assets/images/club-management.jpg) | ![俱乐部基金流水](docs/assets/images/club-fund-ledger.jpg) |
 
----
+### 牌谱、结果与房主控制
 
+| 牌局回放 | 房间结果 |
+|---|---|
+| ![牌局行动和摊牌回放](docs/assets/images/hand-history.jpg) | ![玩家买入、积分和保险池结果](docs/assets/images/room-results.jpg) |
 
-## ✨ 为什么选择这套源码？
+![房主买入、计时、暂停与解散控制](docs/assets/images/room-owner-controls.jpg)
 
+## 典型玩家流程
 
-本项目是**刚刚停服的线上真实项目**，代码经过多年运营验证，绝非Demo。
+1. 玩家登录并进入大厅，选择公开匹配、俱乐部或私人房。
+2. 服务端完成房间分配，记录坐下、旁观、离线与重连状态。
+3. 玩家买入后参与牌局，执行下注、延时、托管、保险等操作。
+4. 牌局结束后生成结果、牌谱和相关俱乐部资金记录。
+5. SNG/MTT 场景继续处理报名、排名、淘汰及奖池流程。
 
+## C++ / Tars 技术结构
 
-| 核心优势 | 说明 |
-| :--- | :--- |
-| 🎮 **8种玩法** | 经典德州、短牌、奥马哈、大菠萝、MTT、SNG、AOF等 |
-| 🎙️ **语音视频** | 牌桌内实时语音聊天、视频打牌 |
-| 👥 **完整社交** | 俱乐部、联盟、私人局（朋友局） |
-| 🏆 **金币大厅** | 完整的经济系统和商城 |
-| 🌍 **多国语言** | 支持多个国家语言，适合出海 |
-| 💰 **真实项目** | 刚刚停服，代码稳定，可直接上线 |
-
-
-### 🇨🇳 简体中文
-- 完整德州扑克系统  
-- 支持多人实时对战  
-- 内置俱乐部与代理体系  
-- 可直接部署或二次开发  
-
-
-### 🇹🇼 繁體中文
-- 完整德州撲克系統  
-- 支援多人即時對戰  
-- 內建俱樂部與代理系統  
-- 可部署與客製化  
-
-
-## ✨ 核心亮点
-
-
-| 特性 | 说明 |
-| :--- | :--- |
-| 🎮 **10+玩法** | 经典德州、AOF、短牌、奥马哈、大菠萝、MTT、SNG、德州牛仔 |
-| 👥 **社交系统** | 俱乐部、联盟、朋友局（私人局）、语音视频聊天 |
-| 🏗️ **成熟代码** | 真实运营2年，刚停服，代码稳定无bug |
-| 📱 **双端支持** | Unity客户端 → iOS + Android |
-| ⚙️ **高性能后端** | C++编写，支持并发能力需以公开测试结果验证 |
-
-
-## 🎯 功能清单
-✅ 俱乐部系统 ✅ 联盟模式 ✅ 私人局/朋友局
-✅ 金币大厅 ✅ 语音聊天 ✅ 视频打牌
-✅ MTT/SNG赛事 ✅ AOF玩法 ✅ 短牌/奥马哈
-✅ 商城系统 ✅ 充值系统 ✅ 战绩统计
-
-
-## ✨ Key Features 
-
-
-- 🧑‍🤝‍🧑 Multiplayer Poker（多人对战）  
-- 🏆 Club System（俱乐部系统）  
-- 🧩 Agent System（代理体系）  
-- ⚡ Real-time Gameplay（实时对局）  
-- 🌐 Online Server（在线服务器）  
-- 🔧 Customizable（可二次开发）  
-
-
-## 📂 代码结构
-├── gameserver.cpp/h # 游戏服务器主逻辑
-├── gameroot.cpp/h # 游戏房间管理
-├── onclientmessage.cpp/h # 客户端消息处理
-├── onroommessage.cpp/h # 房间消息处理
-├── sendclientmessage.cpp/h # 消息发送
-└── sendroommessage.cpp/h
-
-
-## 🚀 技术栈
-
-
-- **客户端**：Unity (C#) - 支持iOS/Android
-- **服务端**：C++ - 高性能稳定运行
-- **数据库**：MySQL + Redis
-
-
-## 📦 资源包
-
-
-- 完整服务端源码 (C++)
-- 完整客户端源码 (Unity)
-- 数据库脚本
-- 部署文档
-- 美术资源包
-
-
-## 💰 获取完整源码
-
-
-📱 **Telegram：@xuzongbin001**  
-📧 **Email：masterai918@gmail.com**
-
-
-
-
-## 🎮 Demo | 演示 
-
-
- 
-查看實際遊戲畫面 👇 
-![4房间2-9人桌](https://github.com/user-attachments/assets/ad203631-b3a9-4df2-bae9-949afcb0ef8f)
-![微信图片_20250515120021](https://github.com/user-attachments/assets/08c0b51e-2c6a-4d93-a5c3-ee8cc99091e5)
-![4房间2-6人桌](https://github.com/user-attachments/assets/bcc34562-7f11-4ccc-a151-ead7c190046f)
-
-
-![微信图片_20250515120009](https://github.com/user-attachments/assets/bfa23dfe-b9a4-4a9e-bb3b-aa7707454094)
-
-
-![微信图片_20250515115957](https://github.com/user-attachments/assets/71320fed-6e05-4cbc-8948-c501a64b7086)
-![微信图片_20250515115943](https://github.com/user-attachments/assets/b7148adf-7ec6-412b-859e-4fefc4c3d7f8)
-![微信图片_20250515115934](https://github.com/user-attachments/assets/ab5a362b-7dc8-4485-aede-5b2cf657cf4a)
-![微信图片_20250515115921](https://github.com/user-attachments/assets/b0c18c7e-6dcc-4b3e-bfb5-26046e4cdb09)
-![微信图片_20250515115912](https://github.com/user-attachments/assets/2713b5f8-7cb0-4d5c-941a-5eb7187bfa9c)
-![微信图片_20250515115859](https://github.com/user-attachments/assets/e9751be5-7c2b-40ae-b3f6-dac1fe05b97c)
-![微信图片_20250515115847](https://github.com/user-attachments/assets/a06241cc-ef57-41a3-a127-133fa883062d)
-![微信图片_20250515115834](https://github.com/user-attachments/assets/e7ac28c3-d625-485b-ade8-30c05e05f51d)
-![微信图片_20250515114608](https://github.com/user-attachments/assets/a0d9a3fb-dc4c-47b3-b44f-f1653c0f557a)
-![微信图片_20250515114530](https://github.com/user-attachments/assets/9bd75e87-accd-4558-83f5-ec31f5db251c)
----
-
-
-⭐ 如果觉得项目有价值，请Star支持一下～
-
-
----
-
-
----
-
-
-## ✅ 加徽章（信任提升）
-
-
-```markdown
-![Stars](https://img.shields.io/github/stars/masterai-top/Texas-game-source-code?style=social)
-![Last Commit](https://img.shields.io/github/last-commit/masterai-top/Texas-game-source-code)
+```text
+客户端 / 网关
+      ↓
+RoomServant（房间请求、离线与通知）
+      ↓
+Room / PlayerMng / TableManager
+      ↓
+Quick · AOF · Short Deck · Private · SNG · MTT
+      ↓
+配置 / 数据库代理 / 日志 / 活动 / 大厅等外部服务
 ```
+
+关键文件包括 `GameDataDef.h`、`Room.cpp`、`Player.h`、`message/onclientmessage.cpp`、`RoomServant.tars` 与 `OrderServant.tars`。仓库也包含机器人/决策接口，但不应把它等同于一个完整、可直接商用的德州 AI 产品。
+
+## 多语言界面
+
+产品截图显示简体中文、繁體中文、English、한국어 与 Bahasa Indonesia 入口。本优化包提供简体、繁体和英文说明页面，便于搜索引擎区分语言版本。
+
+![多语言设置](docs/assets/images/language-settings.jpg)
+
+## 仓库范围与部署说明
+
+本仓库展示核心服务与协议代码，不保证单独克隆后即可完整上线。生产部署通常还需要匹配版本的 Tars 环境、配置中心、数据库/缓存、网关、客户端、支付凭证、日志监控、安全与合规配置。请先审计代码并在隔离环境完成联调和压力测试。
+
+## 联系方式
+
+- Telegram：[@xuzongbin001](https://t.me/xuzongbin001)
+- Email：[masterai918@gmail.com](mailto:masterai918@gmail.com)
+
+> 请遵守所在地关于软件、数据、支付和游戏运营的法律法规。本项目说明仅用于技术评估与合规开发。

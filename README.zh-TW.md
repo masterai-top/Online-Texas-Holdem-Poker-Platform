@@ -1,230 +1,73 @@
-[简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md)
+# 線上多人德州撲克平台原始碼
 
-# H5 與 Web 線上德州撲克平台|德州扑克游戏平台 |德州源码| 
+**C++ / Tars 房間服務，涵蓋私人房、快速場、AOF、短牌、SNG、MTT/淘汰賽、保險、牌譜與俱樂部基金流程。**
 
-> **線上穩定營運多年 | 俱樂部+聯盟+私人局 | 10+種玩法 | 剛停服，全套源碼**
+[简体中文](README.md) · [繁體中文](README.zh-TW.md) · [English](README.en.md) · [產品網站](https://masterai-top.github.io/Online-Texas-Holdem-Poker-Platform/zh-tw/)
 
+![線上德州撲克牌桌與操作介面](docs/assets/images/poker-table-action.jpg)
 
-💡 快速搭建屬於你的德州撲克平台
+## 產品定位
 
-💡 快速建立自己的德州撲克系統
+此倉庫展示線上多人德州撲克房間與牌桌服務的核心程式結構。`Room.cpp`、`Player.h`、`RoomServant.tars`、訊息處理程式與遊戲模組，呈現配對、入桌、下注、旁觀、離線到牌局記錄的服務端流程。
 
+它適合評估或二次開發線上德州撲克服務、私人局、俱樂部房間、SNG 與 MTT 賽事房間。完整上線仍需依實際環境接入設定、資料庫、閘道、支付、風控與客戶端。
 
-🔥 Online Multiplayer System
+## 已驗證玩法與功能
 
-🔥 Club + Agent System
+- **私人房 / 好友局**：私人房類型、房主管理、買入與結算資料。
+- **快速開始、AOF、短牌**：程式中有對應的專用桌台管理流程。
+- **SNG、MTT / 淘汰賽**：報名、排名、淘汰與獎池相關狀態。
+- **牌桌操作**：坐下、站起、下注、買入、延時、自動操作與公共牌顯示。
+- **保險與多次發牌**：保險流程及 Run It Twice 相關訊息。
+- **牌譜與結果**：回放、收藏、行動軌跡、房間結果與積分記錄。
+- **俱樂部基金**：房間資訊、基金發放、流水與管理介面。
+- **訂單介面**：iOS 與 Google Play 訂單建立、驗證與消耗驗證。
 
-🔥 Real-Time Gameplay
+## 產品畫面
 
+| 即時牌桌 | 俱樂部管理 |
+|---|---|
+| ![九人桌、保險、GPS/IP及操作](docs/assets/images/poker-table-overview.jpg) | ![成員、管理員、聯盟、基金及統計](docs/assets/images/club-management.jpg) |
 
-👉 🚀 Demo Available
+| 手牌記錄 | 房間結果 |
+|---|---|
+| ![翻牌前及攤牌行動回放](docs/assets/images/hand-history.jpg) | ![買入、積分、旁觀與保險池](docs/assets/images/room-results.jpg) |
 
-👉 📩 Contact for Full Version
+![房主買入倍數、行動時間、暫停與解散](docs/assets/images/room-owner-controls.jpg)
 
-🔥 Multiplayer Poker System | 多人德州撲克系統
+## 玩家流程
 
-👉 Game Server + Lobby + Club + Tournament
+1. 玩家由大廳進入公開配對、俱樂部或私人房。
+2. 房間服務記錄配對、入座、旁觀、離線與重連狀態。
+3. 玩家買入並進行下注、延時、自動操作與保險選擇。
+4. 牌局完成後產生結果、牌譜與俱樂部資金記錄。
+5. SNG/MTT 繼續處理報名、排名、淘汰及獎池流程。
 
+## C++ / Tars 架構
 
----
-
-
-## 🧠 Project Overview
-
-
-This is a multiplayer Texas Hold’em poker game platform.
-
-本項目是一套多人德州撲克遊戲平台系統。
-
-
-[![Contact](https://img.shields.io/badge/联系-TG%3A%40xuzongbin001-blue)](https://t.me/xuzongbin001)
-
-[![Platform](https://img.shields.io/badge/客户端-Unity%20iOS%2FAndroid-green)]()
-
-[![Backend](https://img.shields.io/badge/服务端-C%2B%2B-red)]()
-
-
----
-
-
-## ✨ 為什麼要選擇這套原始碼？
-
-
-本專案是**剛停服的線上真實專案**，程式碼經過多年營運驗證，絕非Demo。
-
-
-| 核心優勢 | 說明 |
-
-| :--- | :--- |
-
-| 🎮 **8種玩法** | 經典德州、短牌、奧馬哈、大鳳梨、MTT、SNG、AOF等 |
-
-| 🎙️ **語音視訊** | 牌桌內即時語音聊天、視訊打牌 |
-
-| 👥 **完整社交** | 俱樂部、聯盟、私人局（朋友局） |
-
-| 🏆 **金幣大廳** | 完整的經濟系統與商城 |
-
-| 🌍 **多國語言** | 支援多個國家語言，適合出海 |
-
-| 💰 **真實專案** | 剛停服，程式碼穩定，可直接上線 |
-
-
-### 🇨🇳 簡體中文
-
-- 完整德州撲克系統
-
-- 支援多人即時對戰
-
-- 內建俱樂部與代理商體系
-
-- 可直接部署或二次開發
-
-
-### 🇹🇼 繁體中文
-
-- 完整德州撲克系統
-
-- 支援多人即時對戰
-
-- 內置俱樂部與代理系統
-
-- 可部署與客製化
-
-
-## ✨ 核心亮點
-
-
-| 特性 | 說明 |
-
-| :--- | :--- |
-
-| 🎮 **10+玩法** | 經典德州、AOF、短牌、奧馬哈、大鳳梨、MTT、SNG、德州牛仔 |
-
-| 👥 **社交系統** | 俱樂部、聯盟、朋友局（私人局）、語音視訊聊天 |
-
-| 🏗️ **成熟代碼** | 真實運營2年，剛停服，代碼穩定無bug |
-
-| 📱 **雙端支援** | Unity客戶端 → iOS + Android |
-
-| ⚙️ **高效能後端** | C++編寫，支援並發能力需以公開測試結果驗證 |
-
-
-## 🎯 功能清單
-
-✅ 俱樂部系統 ✅ 聯盟模式 ✅ 私人局/朋友局
-
-✅ 金幣大廳 ✅ 語音聊天 ✅ 視訊打牌
-
-✅ MTT/SNG賽事 ✅ AOF玩法 ✅ 短牌/奧馬哈
-
-✅ 商城系統 ✅ 儲值系統 ✅ 戰績統計
-
-
-## ✨ Key Features
-
-
-- 🧑‍🤝‍🧑 Multiplayer Poker（多人對戰）
-
-- 🏆 Club System（俱樂部系統）
-
-- 🧩 Agent System（代理體系）
-
-- ⚡ Real-time Gameplay（即時對局）
-
-- 🌐 Online Server（線上伺服器）
-
-- 🔧 Customizable（可二次開發）
-
-
-## 📂 程式碼結構
-
-├── gameserver.cpp/h # 遊戲伺服器主邏輯
-
-├── gameroot.cpp/h # 遊戲房間管理
-
-├── onclientmessage.cpp/h # 客戶端訊息處理
-
-├── onroommessage.cpp/h # 房間訊息處理
-
-├── sendclientmessage.cpp/h # 訊息發送
-
-└── sendroommessage.cpp/h
-
-
-## 🚀 技術堆疊
-
-
-- **客戶端**：Unity (C#) - 支援iOS/Android
-
-- **服務端**：C++ - 高效能穩定運行
-
-- **資料庫**：MySQL + Redis
-
-
-## 📦 资源包
-
-
-- 完整服務端原始碼 (C++)
-
-- 完整客戶端原始碼 (Unity)
-
-- 資料庫腳本
-
-- 部署文檔
-
-- 美術資源包
-
-
-## 💰 取得完整原始碼
-
-
-📱 **Telegram：@xuzongbin001**
-
-📧 **Email：masterai918@gmail.com**
-
-
-
-
-
-## 🎮 Demo | 演示 
-
-
-
-
-看實際遊戲畫面 👇
-![4房间2-9人桌](https://github.com/user-attachments/assets/ad203631-b3a9-4df2-bae9-949afcb0ef8f)
-![微信图片_20250515120021](https://github.com/user-attachments/assets/08c0b51e-2c6a-4d93-a5c3-ee8cc99091e5)
-![4房间2-6人桌](https://github.com/user-attachments/assets/bcc34562-7f11-4ccc-a151-ead7c190046f)
-
-
-![微信图片_20250515120009](https://github.com/user-attachments/assets/bfa23dfe-b9a4-4a9e-bb3b-aa7707454094)
-
-
-![微信图片_20250515115957](https://github.com/user-attachments/assets/71320fed-6e05-4cbc-8948-c501a64b7086)
-![微信图片_20250515115943](https://github.com/user-attachments/assets/b7148adf-7ec6-412b-859e-4fefc4c3d7f8)
-![微信图片_20250515115934](https://github.com/user-attachments/assets/ab5a362b-7dc8-4485-aede-5b2cf657cf4a)
-![微信图片_20250515115921](https://github.com/user-attachments/assets/b0c18c7e-6dcc-4b3e-bfb5-26046e4cdb09)
-![微信图片_20250515115912](https://github.com/user-attachments/assets/2713b5f8-7cb0-4d5c-941a-5eb7187bfa9c)
-![微信图片_20250515115859](https://github.com/user-attachments/assets/e9751be5-7c2b-40ae-b3f6-dac1fe05b97c)
-![微信图片_20250515115847](https://github.com/user-attachments/assets/a06241cc-ef57-41a3-a127-133fa883062d)
-![微信图片_20250515115834](https://github.com/user-attachments/assets/e7ac28c3-d625-485b-ade8-30c05e05f51d)
-![微信图片_20250515114608](https://github.com/user-attachments/assets/a0d9a3fb-dc4c-47b3-b44f-f1653c0f557a)
-![微信图片_20250515114530](https://github.com/user-attachments/assets/9bd75e87-accd-4558-83f5-ec31f5db251c)
----
-
-
-⭐ 如果覺得專案有價值，請Star支持一下～
-
-
----
-
-
----
-
-
-## ✅ 加徽章（信任提升）
-```markdown
-![Stars](https://img.shields.io/github/stars/masterai-top/Texas-game-source-code?style=social)
-![Last Commit](https://img.shields.io/github/last-commit/masterai-top/Texas-game-source-code)
+```text
+客戶端 / 閘道
+      ↓
+RoomServant（房間請求、離線與通知）
+      ↓
+Room / PlayerMng / TableManager
+      ↓
+Quick · AOF · Short Deck · Private · SNG · MTT
+      ↓
+設定 / 資料庫代理 / 日誌 / 活動 / 大廳等外部服務
 ```
+
+關鍵檔案包括 `GameDataDef.h`、`Room.cpp`、`Player.h`、`message/onclientmessage.cpp`、`RoomServant.tars` 與 `OrderServant.tars`。遊戲玩法以動態 `.so` 模組載入，方便按房間類型分離實作。
+
+## 多語言與部署範圍
+
+產品畫面顯示簡體中文、繁體中文、English、한국어 與 Bahasa Indonesia。此倉庫主要展示服務與協定程式；正式部署仍需匹配的 Tars 環境、設定中心、資料庫/快取、閘道、客戶端、支付憑證、監控與安全配置。
+
+![多語言設定](docs/assets/images/language-settings.jpg)
+
+## 聯絡方式
+
+- Telegram：[@xuzongbin001](https://t.me/xuzongbin001)
+- Email：[masterai918@gmail.com](mailto:masterai918@gmail.com)
+
+> 請遵守所在地關於軟體、資料、支付與遊戲營運的法律規範。本說明僅供技術評估與合規開發。
